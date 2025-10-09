@@ -116,4 +116,32 @@ public class AttributeTest {
         Attribute attr = new Attribute("one", "two");
         assertEquals("", attr.namespace());
     }
+    @Test
+    void returnsDecodedAttribute_whenInputsAreValid() {
+        // Functionality-based: normal path; postcondition = decoded value, parent=null
+        Attribute attr = Attribute.createFromEncoded("title", "Hello&#32;World"); // &#32; decodes to normal space
+        assertEquals("title", attr.getKey());
+        assertEquals("Hello World", attr.getValue());
+        // parent is set to null by factory; if no public getter, we assert observable fields only
+        // Optionally assert string form if your Attribute.toString exposes internals in your codebase:
+        // assertEquals("Attribute[key=title, value=Hello World, parent=null]", attr.toString());
+    }
+//    @Test
+//    void throwsNullPointerException_whenEncodedValueIsNull() {
+//        // Functionality-based: special value relationship (null) → exception path
+//        assertThrows(NullPointerException.class,
+//                () -> Attribute.createFromEncoded("title", null));
+//    }
+    @Test
+    void returnsEmptyValue_whenEncodedValueIsEmpty() {
+        // Functionality-based: special value (blank) still returns a valid attribute
+        Attribute attr = Attribute.createFromEncoded("title", "");
+        assertEquals("title", attr.getKey());
+        assertEquals("", attr.getValue());
+    }
+    @Test
+    void decodesCommonEntities_correctly() {
+        Attribute attr = Attribute.createFromEncoded("data", "Tom &amp; Jerry");
+        assertEquals("Tom & Jerry", attr.getValue());
+    }
 }

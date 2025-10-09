@@ -431,4 +431,10 @@ public class AttributesTest {
         assertEquals(2, attrs.size); // we keep the internals
         assertTrue(attrs.isEmpty());
     }
+
+//    @Test void test_createfromencoded() {
+//        String unencodekey = null;
+//        String encodekey = null;
+//
+//    }
 }
