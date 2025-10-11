@@ -4,31 +4,36 @@ package org.jsoup.parser;
  * A Parse Error records an error in the input HTML that occurs in either the tokenisation or the tree building phase.
  */
 public class ParseError {
-    private final int pos;
-    private final String cursorPos;
-    private final String errorMsg;
+    public final int pos;
+    public final String cursorPos;
+    public final String errorMsg;
 
-    ParseError(CharacterReader reader, String errorMsg) {
+    public ParseError(CharacterReader reader, String errorMsg) {
         pos = reader.pos();
         cursorPos = reader.posLineCol();
         this.errorMsg = errorMsg;
     }
 
-    ParseError(CharacterReader reader, String errorFormat, Object... args) {
+    public ParseError(CharacterReader reader, String errorFormat, Object... args) {
         pos = reader.pos();
         cursorPos = reader.posLineCol();
         this.errorMsg = String.format(errorFormat, args);
     }
 
-    ParseError(int pos, String errorMsg) {
+    /**
+     * Creates a new ParseError.
+     * @param pos The position of the error.
+     * @param errorMsg The error message.
+     */
+    public ParseError(int pos, String errorMsg) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = errorMsg;
     }
 
-    ParseError(int pos, String errorFormat, Object... args) {
+    public ParseError(int pos, String errorFormat, Object... args) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = String.format(errorFormat, args);
     }
 

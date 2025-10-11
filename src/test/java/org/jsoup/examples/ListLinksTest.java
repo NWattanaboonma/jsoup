@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.MissingFormatArgumentException;
@@ -17,6 +18,7 @@ public class ListLinksTest {
     private PrintStream originalOut;
     private ByteArrayOutputStream baos;
     private Method printMethod;
+    private Method trimMethod; // Method for the trim function
 
     @BeforeEach
     void setUp() throws Exception {
@@ -26,6 +28,9 @@ public class ListLinksTest {
         // find private static method print(String, Object...)
         printMethod = ListLinks.class.getDeclaredMethod("print", String.class, Object[].class);
         printMethod.setAccessible(true);
+
+        trimMethod = ListLinks.class.getDeclaredMethod("trim", String.class, int.class);
+        trimMethod.setAccessible(true);
     }
 
     @AfterEach
@@ -83,4 +88,25 @@ public class ListLinksTest {
 //        assertTrue(cause instanceof MissingFormatArgumentException,
 //                "Expected MissingFormatArgumentException but was: " + cause);
 //    }
+
+    //Helper Test Case #8
+    private String invokeTrim(String s, int width) throws Exception {
+        return (String) trimMethod.invoke(null, s, width);
+    }
+
+    //Test Case #8
+    @Test
+    void testTrimWidthZero() throws Exception {
+        // Corresponds to TR1: s.length < width
+        String result = invokeTrim("", 0);
+        assertEquals("", result);
+    }
+
+    @Test
+    void testTrimWidthPositive() throws Exception {
+        // Corresponds to TR2: s.length > width
+        String result = invokeTrim("c", 2);
+        assertEquals("c", result);
+    }
 }
+
