@@ -97,14 +97,12 @@ public class ListLinksTest {
     //Test Case #8
     @Test
     void testTrimWidthZero() throws Exception {
-        // Corresponds to TR1: s.length < width
         String result = invokeTrim("", 0);
         assertEquals("", result);
     }
 
     @Test
     void testTrimWidthPositive() throws Exception {
-        // Corresponds to TR2: s.length > width
         String result = invokeTrim("class", 2);
         assertEquals("c.", result);
     }
