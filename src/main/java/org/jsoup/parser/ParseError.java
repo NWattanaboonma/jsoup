@@ -22,13 +22,13 @@ public class ParseError {
 
     ParseError(int pos, String errorMsg) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = errorMsg;
     }
 
     ParseError(int pos, String errorFormat, Object... args) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = String.format(errorFormat, args);
     }
 
