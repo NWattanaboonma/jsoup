@@ -4,6 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.parser.ParseSettings;
 import org.jsoup.parser.Parser;
 import org.junit.jupiter.api.Test;
+//EAk Code
+import org.jsoup.helper.ValidationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -116,32 +118,45 @@ public class AttributeTest {
         Attribute attr = new Attribute("one", "two");
         assertEquals("", attr.namespace());
     }
+//    Eak Code <__>
+    @Test
+    void throwsException_whenBothInputsAreNull() {
+        assertThrows(ValidationException.class, () -> {
+            Attribute.createFromEncoded(null, null);
+        });
+    }
+
+    @Test
+    void throwsException_whenKeyIsEmpty_andValueIsNull() {
+        assertThrows(ValidationException.class, () -> {
+            Attribute.createFromEncoded("", null);
+        });
+    }
+
+    @Test
+    void throwsException_whenKeyIsNull_andValueIsEmpty() {
+        assertThrows(ValidationException.class, () -> {
+            Attribute.createFromEncoded(null, "");
+        });
+    }
+
     @Test
     void returnsDecodedAttribute_whenInputsAreValid() {
-        // Functionality-based: normal path; postcondition = decoded value, parent=null
-        Attribute attr = Attribute.createFromEncoded("title", "Hello&#32;World"); // &#32; decodes to normal space
+        Attribute attr = Attribute.createFromEncoded("title", "Hello&#32;World"); // &#32; decodes to space
         assertEquals("title", attr.getKey());
         assertEquals("Hello World", attr.getValue());
-        // parent is set to null by factory; if no public getter, we assert observable fields only
-        // Optionally assert string form if your Attribute.toString exposes internals in your codebase:
-        // assertEquals("Attribute[key=title, value=Hello World, parent=null]", attr.toString());
     }
-//    @Test
-//    void throwsNullPointerException_whenEncodedValueIsNull() {
-//        // Functionality-based: special value relationship (null) → exception path
-//        assertThrows(NullPointerException.class,
-//                () -> Attribute.createFromEncoded("title", null));
-//    }
+
     @Test
     void returnsEmptyValue_whenEncodedValueIsEmpty() {
-        // Functionality-based: special value (blank) still returns a valid attribute
         Attribute attr = Attribute.createFromEncoded("title", "");
         assertEquals("title", attr.getKey());
         assertEquals("", attr.getValue());
     }
+
     @Test
     void decodesCommonEntities_correctly() {
-        Attribute attr = Attribute.createFromEncoded("data", "Tom &amp; Jerry");
-        assertEquals("Tom & Jerry", attr.getValue());
+        Attribute attr = Attribute.createFromEncoded("class", "quality assurance &amp testing");
+        assertEquals("quality assurance & testing", attr.getValue());
     }
 }
