@@ -105,8 +105,8 @@ public class ListLinksTest {
     @Test
     void testTrimWidthPositive() throws Exception {
         // Corresponds to TR2: s.length > width
-        String result = invokeTrim("c", 2);
-        assertEquals("c", result);
+        String result = invokeTrim("class", 2);
+        assertEquals("c.", result);
     }
 }
 
