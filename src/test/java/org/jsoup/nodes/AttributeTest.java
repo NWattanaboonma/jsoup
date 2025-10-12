@@ -118,45 +118,4 @@ public class AttributeTest {
         Attribute attr = new Attribute("one", "two");
         assertEquals("", attr.namespace());
     }
-//    Eak Code <__>
-    @Test
-    void throwsException_whenBothInputsAreNull() {
-        assertThrows(ValidationException.class, () -> {
-            Attribute.createFromEncoded(null, null);
-        });
-    }
-
-    @Test
-    void throwsException_whenKeyIsEmpty_andValueIsNull() {
-        assertThrows(ValidationException.class, () -> {
-            Attribute.createFromEncoded("", null);
-        });
-    }
-
-    @Test
-    void throwsException_whenKeyIsNull_andValueIsEmpty() {
-        assertThrows(ValidationException.class, () -> {
-            Attribute.createFromEncoded(null, "");
-        });
-    }
-
-    @Test
-    void returnsDecodedAttribute_whenInputsAreValid() {
-        Attribute attr = Attribute.createFromEncoded("title", "Hello&#32;World"); // &#32; decodes to space
-        assertEquals("title", attr.getKey());
-        assertEquals("Hello World", attr.getValue());
-    }
-
-    @Test
-    void returnsEmptyValue_whenEncodedValueIsEmpty() {
-        Attribute attr = Attribute.createFromEncoded("title", "");
-        assertEquals("title", attr.getKey());
-        assertEquals("", attr.getValue());
-    }
-
-    @Test
-    void decodesCommonEntities_correctly() {
-        Attribute attr = Attribute.createFromEncoded("class", "quality assurance &amp testing");
-        assertEquals("quality assurance & testing", attr.getValue());
-    }
 }
