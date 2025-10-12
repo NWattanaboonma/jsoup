@@ -8,27 +8,27 @@ public class ParseError {
     private final String cursorPos;
     private final String errorMsg;
 
-    ParseError(CharacterReader reader, String errorMsg) {
+    public ParseError(CharacterReader reader, String errorMsg) {
         pos = reader.pos();
         cursorPos = reader.posLineCol();
         this.errorMsg = errorMsg;
     }
 
-    ParseError(CharacterReader reader, String errorFormat, Object... args) {
+    public ParseError(CharacterReader reader, String errorFormat, Object... args) {
         pos = reader.pos();
         cursorPos = reader.posLineCol();
         this.errorMsg = String.format(errorFormat, args);
     }
 
-    ParseError(int pos, String errorMsg) {
+    public ParseError(int pos, String errorMsg) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = errorMsg;
     }
 
-    ParseError(int pos, String errorFormat, Object... args) {
+    public ParseError(int pos, String errorFormat, Object... args) {
         this.pos = pos;
-        cursorPos = String.valueOf(pos);
+        this.cursorPos = String.valueOf(pos);
         this.errorMsg = String.format(errorFormat, args);
     }
 
