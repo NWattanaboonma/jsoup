@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for ParseError, updated to use the available public constructor.
- * This requires the ParseError(int, String) constructor to be public.
- */
+//Test Case 5
 public class ParseErrorTest {
     @Test
     void testGetErrorMessageNewLine() {
