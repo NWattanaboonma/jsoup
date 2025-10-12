@@ -3,7 +3,7 @@ package org.jsoup.nodes;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//Eak Code
 public class AttributeCreateFromEncodedTest {
     @Test
     void requirement1_keyAndValueAreNull_throwsException() {

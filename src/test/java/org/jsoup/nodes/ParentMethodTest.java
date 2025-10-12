@@ -111,18 +111,7 @@ public class ParentMethodTest {
         assertSame(parentBefore, li.parent(), "Sibling insertions should not change parent()");
         assertEquals(3, parentBefore.childNodeSize(), "Parent should now have three li children");
     }
-
-//    @Test
-//    void parent_on_clone_isNull_until_attached() {
-//        Document doc = Jsoup.parse("<div><span>t</span></div>");
-//        Element span = doc.selectFirst("span");
-//        Element clone = span.clone();
-//
-//        assertNull(clone.parent(), "Cloned element should be orphan until attached");
-//        doc.selectFirst("div").appendChild(clone);
-//        assertNotNull(clone.parent(), "After appending clone, parent() should be non-null");
-//    }
-
+    
     @Test
     void parent_on_comment_and_dataNode() {
         Document doc = Jsoup.parse("<div><!--c--><script>var a=1;</script></div>");

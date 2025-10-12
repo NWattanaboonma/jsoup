@@ -22,6 +22,7 @@ public class StringUtilMookTest {
         assertTrue(StringUtil.startsWithNewline(input), "TR5 failed: Input '\\n' should return true.");
     }
 //   The under 2 are not the case for the BCC
+//   Make it Full cover case using this 2 below methods
     @Test
     public void testNullStringReturnsFalse() {
         // This test covers the 'string == null' branch.
