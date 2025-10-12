@@ -10,7 +10,6 @@ import java.util.MissingFormatArgumentException;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class MyUtilsTest {
-    // Used to capture console output for tests that print successfully
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -18,24 +17,19 @@ public class MyUtilsTest {
 
     @BeforeAll
     static void getPrivateMethod() throws NoSuchMethodException {
-        // Step 1: Get the private method once for all tests
         printMethod = ListLinks.class.getDeclaredMethod("print", String.class, Object[].class);
-        // Step 2: Make it accessible once for all tests
         printMethod.setAccessible(true);
     }
     @BeforeEach
     void setUpStreams() {
-        // Redirect System.out before each test
         System.setOut(new PrintStream(outContent));
     }
     @AfterEach
     void restoreStreams() {
-        // Restore System.out after each test
         System.setOut(originalOut);
     }
     @Test
     void testRequirement2() throws Exception {
-        // Step 3: Invoke the method with null because it's static
         printMethod.invoke(null, "", new Object[]{});
         assertEquals(System.lineSeparator(), outContent.toString());
     }
@@ -47,7 +41,6 @@ public class MyUtilsTest {
             printMethod.invoke(null, arguments);
         });
 
-        // Now this check will work correctly
         assertTrue(exception.getCause() instanceof MissingFormatArgumentException);
     }
     @Test
@@ -64,7 +57,6 @@ public class MyUtilsTest {
         String two = "two";
         String three = "three";
         Exception exception = assertThrows(InvocationTargetException.class, () -> {
-            // **FIX APPLIED HERE**
             Object[] arguments = new Object[]{ "number %s, %d", new Object[]{one, two, three} };
             printMethod.invoke(null, arguments);
         });
