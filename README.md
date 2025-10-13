@@ -1,17 +1,99 @@
 
 <span style="font-family: Times , sans-serif;">
 
-# Jsoup
+# Jsoup (Maven)
 
 **Jsoup** is a Java library that is a HTML parser, and is used to retrieve, read and manipulate real life HTML documents. It enables the developers to obtain data with CSS-like selectors and purify untrusted HTML data safely. In this JaCoCo coverage report, the project under test is Jsoup and this report indicates the percentage of its code which has been covered by the automated tests. The various packages like org.jsoup.parser, org.jsoup.nodes, org.jsoup.select, and others are the key functional components of the library and they are used to perform a specific task like parsing HTML, representing document nodes and selecting elements. The Coverage (%) columns show the percentage of the code in each package that was actually run in the course of testing. The sections of the code which were not tested are outlined in The Missed Instructions, Branches and Methods sections and allow developers to know which areas of Jsoup remain untested and require further test cases to be considered as fully reliable.
+
+# Jacoco Coverage Report
+
+**Jacoco** is a free Java code coverage tool that instruments bytecode to show how much of your code is exercised by tests (line, branch, instruction, class, method). It integrates with `Maven/Gradle/Ant, IDEs (IntelliJ/Eclipse), and CI (Jenkins/GitHub Actions), generating HTML/XML/CSV reports`; quick run: Maven mvn test jacoco:report, Gradle gradle test jacocoTestReport. Use it to find untested code and enforce minimum coverage in your build.
 
 ---
 
 # Test Case #1
 
+### **Name of the Test Case:**
+
+    CharsetTest
+
+### **Goal of the Test Case:**
+
+To test function Response charset when receiving input type string. It will return response correctly.
+
+### **Identify testable functions:**
+
+`HttpConnection.java` - **line 977**
+![TestCase1](image-5.png)
+
+### **Identify parameters, return types, return values, and exceptional behavior:**
+
+| Detail                   | Description                                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| **Parameter type**       | `String Charset`                                                                                                  |
+| **Return type**          | `Response`                                                                                                     |
+| **Return value**         |                                |
+| **Exceptional behavior** |  |
+
+---
+
+### **Interface-based characteristic**
+
+| **Characteristic**     | **Block 1**                       | **Block 2**                              | **Block 3**             |
+| ---------------------- | --------------------------------- | ---------------------------------------- | ----------------------- |
+| C1 = Parameter charset | input parameter is String example | input parameter isn’t String example 123 | input parameter is null |
+| C2 = return values     | standard valid charset name       | Error_key                                | Null_Key                |
+
+---
+
+### **Identify (possible) values (interface)**
+
+| **Characteristic**      | **Block 1** | **Block 2** | **Block 3** |
+| ----------------------- | ----------- | ----------- | ----------- |
+| C1 = Parameter charset  | “testdata”  | “”          | null        |
+| C2 = Attribute presence | “testdata”  | “”          | null        |
+
+---
+
+### **Functionality-based characteristic**
+
+| **Characteristic**       | **Block 1**                  | **Block 2**                 | **Block 3** |
+| ------------------------ | ---------------------------- | --------------------------- | ----------- |
+| F1 = Input Charset Value | Valid non-empty string       | empty string                | null        |
+| F2 = Assignment Behavior | Assign charset value to this | Assign empty String to this | Assign null |
+| F3 = Return Behavior     | Return this                  | Return this                 | Return null |
+
+---
+
+### **Identify (possible) values (functionality)**
+
+| **Characteristic**                            | **Block 1 (Setup, Input)**     | **Block 2 (Setup, Input)** | **Block 3 (Setup, Input)** |
+| --------------------------------------------- | ------------------------------ | -------------------------- | -------------------------- |
+| F1 = Assignment parameter and Return Behavior | Response().charset(“testdata”) | Response().charset(“”)     | Response().charset()       |
+
+---
+
+### **Combine partitions to define test requirements (ACoC)**
+
+| **Test ID** | **C1 (has parent?)** | **F1 (returned)** |
+| ----------- | -------------------- | ----------------- |
+| 1          | Charset = “testdata” | “testdata”        |
+| 2          | Charset = “”         | “”                |
+| 3          | Charset = null       | null              |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test** | **Blocks (C1, C2, F1)**                                               | **Input**                      | **Expected output** |
+| -------- | --------------------------------------------------------------------- | ------------------------------ | ------------------- |
+| 1       | input data in parameter charset is String can stored and return       | Response().charset(“testdata”) | testdata            |
+| 2       | input data in parameter charset is Empty String can stored and return | Response().charset(“”)         | “”                  |
+| 3       | input data in parameter charset is null can stored and return         | null                           | null                |
+
 ---
 ### CodeTest Results (Path)
-    path: 
+    path: jsoup/src/test/java/org/jsoup/helper/CharsetTest.java
 
 ---
 
