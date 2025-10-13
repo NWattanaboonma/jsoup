@@ -1,6 +1,6 @@
 package org.jsoup.jsoupForChaiyongTest;
 
-/* Copyright (C) 2025 Mook - All Rights Reserved
+/* Copyright (C) 2025 Thitiwan Keattitat - All Rights Reserved
  * You may use, distribute and modify this code under the terms of the MIT license.
  */
 
