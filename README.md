@@ -56,14 +56,14 @@ To verify that the `hasAttributeIgnoreCase(String key)` function correctly ident
 | Characteristic              | Block 1            | Block 2          | Block 3           |
 | --------------------------- | ------------------ | ---------------- | ----------------- |
 | **C1 = Attribute presence** | Attribute = 0      | Attribute = 1    | Attribute > 1     |
-| **C2 = Key validity**       | Valid key (`"id"`) | Empty key (`""`) | Null key (`null`) |
+| **C2 = Key validity**       | Valid key          | Empty key        | Null key          |
 
 **Identify (possible) values (functionality):**
 
-| Characteristic              | Example                                                       |
-| --------------------------- | ------------------------------------------------------------- |
-| **C1 = Attribute presence** | `<div>`, `<div id="main">`, `<div id="main" class="content">` |
-| **C2 = Key validity**       | `"id"`, `""`, `null`                                          |
+| Characteristic              | Block 1            | Block 2          | Block 3                             |
+| --------------------------- | ------------------ | ---------------- | ----------------------------------- |
+| **C1 = Attribute presence** | `<div>`            | `<div id="main">`| `<div id="main" class="content">`   |
+| **C2 = Key validity**       | "id"               | “”               | null                                |
 
 ---
 
@@ -77,7 +77,7 @@ To verify that the `hasAttributeIgnoreCase(String key)` function correctly ident
 
 | Characteristic              | Block 1            | Block 2          | Block 3           |
 | --------------------------- | ------------------ | ---------------- | ----------------- |
-| **F1 = Case-insensitive**   | <div id=”main”>    | <div ID=”main”>  | <div>             |
+| **F1 = Case-insensitive**   | `<div id=”main”>`  | `<div ID=”main”>`| `<div>`           |
 
 ---
 
@@ -113,7 +113,7 @@ Assumption: **ECC (Each Choice Coverage)**
 
 ### **Name of the Test Case:**
 
-    Manow
+    StringUtilTest
 
 ---
 
@@ -126,6 +126,7 @@ To verify that the function `startsWithNewline(String string)` correctly determi
 ### **Identified Function:**
 
 `StringUtil.java` – **line 168**
+![Testcase3](image-3.png)
 
 ---
 
@@ -199,8 +200,8 @@ Assumption: **BCC (Each Choice Coverage)**
 | **TR5**     | (Not_null, `string.length() == 1`, True) | `"\n"`      | `true`              |
 
 ---
-
-
+### CodeTest Results (Path)
+    path: jsoup/src/test/java/org/jsoup/jsoupForChaiyongTest/StringUtilTest.java
 
 ---
 
@@ -235,7 +236,7 @@ Specifically:
 
 ### **Identified Function:**
 
-`ListLinks.java` (line 50)
+`ListLinks.java` – **line 50**
 ![TestCase7](image-1.png)
 
 ---
@@ -332,22 +333,13 @@ Specifically:
 
 ### **Goal of the Test Case:**
 
-To verify whether the parameters `String unencodedKey` and `String encodedValue` are valid and usable. Specifically:
-
-* `unencodedKey` must **not** be `null` or empty.
-* `encodedValue` must **not** be `null`.
-
-Additionally, the test checks whether `Entities.unescape()` correctly converts HTML entities such as:
-
-* `&lt;` → `<`
-* `&amp;` → `&`
-* `&quot;` → `"`
+To verify whether the parameters `String unencodedKey` and `String encodedValue` aare usable or not? (String unencodedKey shouldn’t be null or empty and String encodedValue shouldn’t be null)
 
 ---
 
 ### **Identified Function:**
 
-`Attribute.java` (line 291)
+`Attribute.java` – **line 291**
     ![TestCase10](image.png)
 
 ---
@@ -365,6 +357,13 @@ Additionally, the test checks whether `Entities.unescape()` correctly converts H
 
 ### **Interface-Based Characteristics**
 
+| **Characteristic**                    | **Block 1** | **Block 2**  | **Block 3**      | **Block 4**                         | **Block 5**   |
+| ------------------------------------- | ----------- | ------------ | ---------------- | ----------------------------------- | ------------- |
+| **C1 = value of String unencodedKey** | null string | empty string | non-empty string | non-empty string with HTML entities | HTML entities |
+| **C2 = value of String encodedValue** | null string | empty string | non-empty string | non-empty string with HTML entities | HTML entities |
+
+### **Identify (possible) values (interface):**
+
 | Characteristic        | Block 1 | Block 2 | Block 3   | Block 4                            | Block 5   |
 | --------------------- | ------- | ------- | --------- | ---------------------------------- | --------- |
 | **C1 = unencodedKey** | `null`  | `""`    | `"class"` | `"quality assurance &amp testing"` | `"&amp;"` |
@@ -378,9 +377,9 @@ Additionally, the test checks whether `Entities.unescape()` correctly converts H
 | --------------------- | ---------------- | --------------------------------- | ------------------------------------- | ----------------------------------- |
 | **F1 = Output value** | throws exception | Create attribute with empty value | Create attribute with unencoded value | Create attribute with encoded value |
 
----
+### **Identify (possible) values (interface):**
 
-### **Test Requirement Design**
+---
 
 **Coverage Criterion:** MBCC (Multiple Base Choice Coverage)
 
