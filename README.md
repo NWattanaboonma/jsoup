@@ -14,12 +14,193 @@
 # Test Case #1
 
 ---
-
-# Test Case #2
+### CodeTest Results (Path)
+    path: 
 
 ---
 
-# Test Case #3
+# Test Case #2
+
+### **Name of the Test Case:**
+
+    TokenTest
+
+---
+
+### **Goal of the Test Case:**
+
+To verify that the `hasAttributeIgnoreCase(String key)` function correctly identifies whether an element’s attribute exists, **ignoring uppercase and lowercase differences** in the key.
+
+---
+
+### **Identified Function:**
+
+`Token.java` – **line 199**
+![Testcase2](image-2.png)
+
+---
+
+### **Identify parameters, return types, return values, and exceptional behavior: **
+
+| Detail                   | Description                                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| **Parameter type**       | `String key`                                                                                                  |
+| **Return type**          | `boolean`                                                                                                     |
+| **Return value**         | `true` if the specified attribute exists (case-insensitive), otherwise `false`                                |
+| **Exceptional behavior** | None explicitly thrown (unless null handling causes `ValidationException` or NPE depending on implementation) |
+
+---
+
+### **Interface-Based Characteristics**
+
+| Characteristic              | Block 1            | Block 2          | Block 3           |
+| --------------------------- | ------------------ | ---------------- | ----------------- |
+| **C1 = Attribute presence** | Attribute = 0      | Attribute = 1    | Attribute > 1     |
+| **C2 = Key validity**       | Valid key (`"id"`) | Empty key (`""`) | Null key (`null`) |
+
+**Identify (possible) values (functionality):**
+
+| Characteristic              | Example                                                       |
+| --------------------------- | ------------------------------------------------------------- |
+| **C1 = Attribute presence** | `<div>`, `<div id="main">`, `<div id="main" class="content">` |
+| **C2 = Key validity**       | `"id"`, `""`, `null`                                          |
+
+---
+
+### **Functionality-Based Characteristics**
+
+| Characteristic                               | Block 1                        | Block 2                             | Block 3             |
+| -------------------------------------------- | ------------------------------ | ----------------------------------- | ------------------- |
+| **F1 = Case-insensitive attribute matching** | Attribute found with same case | Attribute found with different case | Attribute not found |
+
+**Identify (possible) values (functionality):**
+
+| Characteristic              | Block 1            | Block 2          | Block 3           |
+| --------------------------- | ------------------ | ---------------- | ----------------- |
+| **F1 = Case-insensitive**   | <div id=”main”>    | <div ID=”main”>  | <div>             |
+
+---
+
+### **Combination of Partitions (ECC – Each Choice Coverage)**
+
+Assumption: **ECC (Each Choice Coverage)**
+
+**Test requirements(max)=** 3
+
+| **Test ID** | **C1 (Attribute presence)** | **C2 (Key validity)** | **F1 (Case-insensitive)**           |
+| ----------- | --------------------------- | --------------------- | ----------------------------------- |
+| **TR1**     | Attribute == 0              | Empty key             | Attribute not found                 |
+| **TR2**     | Attribute == 1              | Valid key             | Attribute found with same case      |
+| **TR3**     | Attribute > 1               | Null key              | Attribute found with different case |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test ID** | **Blocks (C1, C2, F1)**                                        | **Input (HTML setup, key)**               | **Expected Output**            |
+| ----------- | -------------------------------------------------------------- | ----------------------------------------- | ------------------------------ |
+| **TR1**     | (Attribute == 0, Empty key, Attribute not found)               | `<div>`, `""`                             | `false`                        |
+| **TR2**     | (Attribute == 1, Valid key, Attribute found with same case)    | `<div id="main">`, `"id"`                 | `true`                         |
+| **TR3**     | (Attribute > 1, Null key, Attribute found with different case) | `<div id="main" class="content">`, `null` | **Throws ValidationException** |
+
+---
+### CodeTest Results (Path)
+    path: jsoup/src/test/java/org/jsoup/parser/TokenTest.java
+
+---
+
+# Test Case #3 
+
+### **Name of the Test Case:**
+
+    Manow
+
+---
+
+### **Goal of the Test Case:**
+
+To verify that the function `startsWithNewline(String string)` correctly determines whether a given string **starts with a newline character (`'\n'`)**.
+
+---
+
+### **Identified Function:**
+
+`StringUtil.java` – **line 168**
+
+---
+
+### **Parameter and Return Details**
+
+| Detail                   | Description                                                            |
+| ------------------------ | ---------------------------------------------------------------------- |
+| **Parameter type**       | `String string`                                                        |
+| **Return type**          | `boolean`                                                              |
+| **Return value**         | `true` if the first character is a newline (`'\n'`), otherwise `false` |
+| **Exceptional behavior** | None (null input may cause `NullPointerException` if not handled)      |
+
+---
+
+### **Interface-Based Characteristics**
+
+| Characteristic            | Block 1                | Block 2                | Block 3               |
+| ------------------------- | ---------------------- | ---------------------- | --------------------- |
+| **C1 = String existence** | `Null_String`          | `Not_null`             | –                     |
+| **C2 = String length**    | `string.length() == 0` | `string.length() == 1` | `string.length() > 1` |
+
+**Identify (possible) values (functionality):**
+
+| Characteristic            | Block 1 | Block 2        | Block 3   |
+| ------------------------- | ------- | -------------- | --------- |
+| **C1 = String existence** | `null`  | `"HelloWorld"` | –         |
+| **C2 = String length**    | `""`    | `"h"`          | `"Hello"` |
+
+---
+
+### **Functionality-Based Characteristics**
+
+| Characteristic                          | Block 1 | Block 2 |
+| --------------------------------------- | ------- | ------- |
+| **F1 = First letter of string == ‘\n’** | `True`  | `False` |
+
+**Identify (possible) values (functionality):**
+
+| Characteristic                          | Block 1    | Block 2 |
+| --------------------------------------- | ---------- | --------|
+| **F1 = First letter of string == ‘\n’** | `\nHello`  | `Hello` |
+
+---
+
+### **Combination of Partitions (ECC – Each Choice Coverage)**
+
+Assumption: **BCC (Each Choice Coverage)**
+**Total Test Requirements:** 5  (comes from 1 + ((2 - 1) * 1 + (3 - 1) * 1 + (2-1)*1))
+
+
+**Base Choices:**
+
+1. `(Not_null, String.length()>1,True)`
+
+| **Test ID**           | **C1 (String existence)** | **C2 (String length)** | **F1 (Starts with '\n')** |
+| --------------------- | ------------------------- | ---------------------- | ------------------------- |
+| **TR1 (Base Choice)** | Not_null                  | `string.length() > 1`  | True                      |
+| **TR2**               | Not_null                  | `string.length() > 1`  | False                     |
+| **TR3**               | Null_String               | `string.length() > 1`  | True                      |
+| **TR4**               | Not_null                  | `string.length() == 0` | True                      |
+| **TR5**               | Not_null                  | `string.length() == 1` | True                      |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test ID** | **Blocks (C1, C2, F1)**                  | **Input**   | **Expected Output** |
+| ----------- | ---------------------------------------- | ----------- | ------------------- |
+| **TR1**     | (Not_null, `string.length() > 1`, True)  | `"\nHello"` | `true`              |
+| **TR2**     | (Not_null, `string.length() > 1`, False) | `"Hello"`   | `false`             |
+| **TR5**     | (Not_null, `string.length() == 1`, True) | `"\n"`      | `true`              |
+
+---
+
+
 
 ---
 
@@ -59,7 +240,7 @@ Specifically:
 
 ---
 
-### **Parameter and Return Details**
+### **Identify parameters, return types, return values, and exceptional behavior: **
 
 | Detail                    | Description                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -103,17 +284,17 @@ Specifically:
 **Assumption:** PWC (Pair-Wise Coverage)
 **Total Test Requirements:** 9 (3 × 3 combinations)
 
-| Test ID | IC1              | FC1                         | FC2                        | Feasible?    |
-| ------- | ---------------- | --------------------------- | -------------------------- | ------------ |
-| **1**   | null string      | Format specifiers < objects | All specifiers don’t match | ❌ Infeasible |
-| **2**   | empty string     | Format specifiers = objects | Some match, others don’t   | ✅ Feasible   |
-| **3**   | non-empty string | Format specifiers > objects | All match                  | ✅ Feasible   |
-| **4**   | null string      | Format specifiers = objects | All match                  | ❌ Infeasible |
-| **5**   | null string      | Format specifiers > objects | Some match, others don’t   | ❌ Infeasible |
-| **6**   | empty string     | Format specifiers < objects | All match                  | ✅ Feasible   |
-| **7**   | empty string     | Format specifiers > objects | All specifiers don’t match | ❌ Infeasible |
-| **8**   | non-empty string | Format specifiers < objects | Some match, others don’t   | ✅ Feasible   |
-| **9**   | non-empty string | Format specifiers = objects | All specifiers don’t match | ✅ Feasible   |
+| Test ID | IC1              | FC1                         | FC2                        |
+| ------- | ---------------- | --------------------------- | -------------------------- |
+| **1**   | null string      | Format specifiers < objects | All specifiers don’t match |
+| **2**   | empty string     | Format specifiers = objects | Some match, others don’t   |
+| **3**   | non-empty string | Format specifiers > objects | All match                  |
+| **4**   | null string      | Format specifiers = objects | All match                  |
+| **5**   | null string      | Format specifiers > objects | Some match, others don’t   |
+| **6**   | empty string     | Format specifiers < objects | All match                  |
+| **7**   | empty string     | Format specifiers > objects | All specifiers don’t match |
+| **8**   | non-empty string | Format specifiers < objects | Some match, others don’t   |
+| **9**   | non-empty string | Format specifiers = objects | All specifiers don’t match |
 
 ---
 
