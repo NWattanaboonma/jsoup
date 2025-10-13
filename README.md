@@ -24,7 +24,7 @@ To test function Response charset when receiving input type string. It will retu
 ### **Identify testable functions:**
 
 `HttpConnection.java` - **line 977**
-![TestCase1](image-5.png)
+![Testcase1](image-6.png)
 
 ### **Identify parameters, return types, return values, and exceptional behavior:**
 
