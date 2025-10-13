@@ -1,5 +1,10 @@
-package org.jsoup.examples;
+package org.jsoup.jsoupForChaiyongTest;
 
+/* Copyright (C) 2025 Auay - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the MIT license.
+ */
+
+import org.jsoup.examples.Wikipedia;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

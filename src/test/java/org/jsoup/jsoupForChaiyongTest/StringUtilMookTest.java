@@ -1,5 +1,11 @@
-package org.jsoup.internal;
+package org.jsoup.jsoupForChaiyongTest;
 
+/* Copyright (C) 2025 Mook - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the MIT license.
+ */
+
+import org.jsoup.internal.StringUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,9 +14,8 @@ public class StringUtilMookTest {
     @Test
     public void tr1_baseCase_startsWthNewlineLengthGreaterThanOne() {
         String input = "\nHello";
-        assertTrue(StringUtil.startsWithNewline(input), "TR1 failed: Input '\\nHello' should return true.");
+        Assertions.assertTrue(StringUtil.startsWithNewline(input), "TR1 failed: Input '\\nHello' should return true.");
     }
-//   The Come from the second return of the test subject.
     @Test
     public void tr2_doesNotStartWithNewlineLengthGreaterThanOne() {
         String input = "Hello";

@@ -1,6 +1,11 @@
-package org.jsoup.nodes;
+package org.jsoup.jsoupForChaiyongTest;
+
+/* Copyright (C) 2025 Nuttipong Wattanaboonma - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the MIT license.
+ */
 
 import org.jsoup.helper.ValidationException;
+import org.jsoup.nodes.Attribute;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
