@@ -1,13 +1,9 @@
 
 <span style="font-family: Times , sans-serif;">
 
-# Document
+# Jsoup
 
-1. What is Jsoup?
-2. How to run the Program
-3. what Program using Maven?
-4. All the 10 Test
-
+**Jsoup** is a Java library that is a HTML parser, and is used to retrieve, read and manipulate real life HTML documents. It enables the developers to obtain data with CSS-like selectors and purify untrusted HTML data safely. In this JaCoCo coverage report, the project under test is Jsoup and this report indicates the percentage of its code which has been covered by the automated tests. The various packages like org.jsoup.parser, org.jsoup.nodes, org.jsoup.select, and others are the key functional components of the library and they are used to perform a specific task like parsing HTML, representing document nodes and selecting elements. The Coverage (%) columns show the percentage of the code in each package that was actually run in the course of testing. The sections of the code which were not tested are outlined in The Missed Instructions, Branches and Methods sections and allow developers to know which areas of Jsoup remain untested and require further test cases to be considered as fully reliable.
 
 ---
 
@@ -33,7 +29,7 @@ To test if `hasAttributeIgnoreCase(String key)` correctly identifies whether an 
 
 ---
 
-### **Identify testable functions: **
+### **Identify testable functions:**
 
 `Token.java` – **line 199**
 ![Testcase2](image-2.png)
@@ -121,7 +117,7 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ---
 
-### **Identify testable functions: **
+### **Identify testable functions:**
 
 `StringUtil.java` – **line 168**
 ![Testcase3](image-3.png)
@@ -210,6 +206,92 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 ---
 
 # Test Case #6
+
+### **Name of the Test Case:**
+    TestAttribute
+
+**The goal of the test case:**
+To test `equals` if two attributes have the same class, key, and value.
+
+**Identify testable function:**
+`Attribute.java` – **line 330**
+![Testcase6](image-4.png)
+---
+
+### **Identify parameter types, return types, return value, exceptional behaviors**
+
+| **Description**           | **Details**                                                               |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Parameter types**       | Object                                                                    |
+| **Return type**           | Boolean                                                                   |
+| **Return value**          | True (if the 1st object is equal to the 2nd object), False (if not equal) |
+| **Exceptional behaviors** | None                                                                      |
+
+---
+
+### **Interface-based characteristics**
+
+| **Characteristic**             | **Block 1** | **Block 2**                     | **Block 3**                                   | **Block 4**                              | **Block 5**                                 | **Block 6**                            |
+| ------------------------------ | ----------- | ------------------------------- | --------------------------------------------- | ---------------------------------------- | ------------------------------------------- | -------------------------------------- |
+| What is the state of Object o? | null object | non-null & non-Attribute object | non-null & Attribute object & different value | non-null & Attribute object & same value | non-null & Attribute object & different key | non-null & Attribute object & same key |
+
+**IIdentify (possible) values (interface):**
+
+| **Characteristic**             | **Block 1** | **Block 2**       | **Block 3**                              | **Block 4**                         | **Block 5**                            | **Block 6**                       |
+| ------------------------------ | ----------- | ----------------- | ---------------------------------------- | ----------------------------------- | -------------------------------------- | --------------------------------- |
+| What is the state of Object o? | null        | document software | attribute software (has different value) | attribute software (has same value) | attribute software (has different key) | attribute software (has same key) |
+
+---
+
+### **Functionality-based characteristics**
+
+| **Characteristic 1: Is Object this the same as Object o** | **Block 1** | **Block 2** |
+| --------------------------------------------------------- | ----------- | ----------- |
+| Is Object this the same as Object o                       | true        | false       |
+
+**Identify (possible) values (functionality):**
+
+| **Characteristic**                  | **Block 1** | **Block 2** |
+| ----------------------------------- | ----------- | ----------- |
+| Is Object this the same as Object o | true        | false       |
+
+---
+
+### **Combination of Partitions BCC (Base Choice Coverage)**
+
+**Base choice:** 
+
+   1. `(null object, false)`
+
+**Test requirements:** (comes from 1 + ((6 - 1) * 1 + (2 - 1) * 1))
+
+| **Test Requirement ID** | **IC1**                                       | **FC1** |
+| ----------------------- | --------------------------------------------- | ------- |
+| 1                       | null object & non-Attribute object            | false   |
+| 2                       | null object & Attribute object                | false   |
+| 3                       | non-null & non-Attribute object               | false   |
+| 4                       | non-null & Attribute object & different value | false   |
+| 5                       | non-null & Attribute object & same value      | false   |
+| 6                       | non-null & Attribute object & different key   | false   |
+| 7                       | non-null & Attribute object & different key   | true    |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test Requirement ID** | **Test Values**                                       | **Expected Values** |
+| ----------------------- | ----------------------------------------------------- | ------------------- |
+| 1                       | null object & non-Attribute object                    | false               |
+| 2                       | null object & Attribute object                        | false               |
+| 3                       | non-null & non-Attribute object                       |                     |
+| 4                       | attribute software (has different value and key)      | false               |
+| 5                       | attribute software (has same value)                   | true                |
+| 6                       | attribute software (has different key but same value) | true                |
+| 7                       | attribute software (has same key)                     | true                |
+
+---
+### CodeTest Results (Path)
+    path: jsoup/src/test/java/org/jsoup/nodes/TestAttribute.java
 
 ---
 

@@ -1,11 +1,14 @@
 package org.jsoup.helper;
 
+/* Copyright (C) 2025 Pond name - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the MIT license.
+ */
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-//Q1
 public class CharsetTest {
     @Test
     public void charetInputValueIsString() {
