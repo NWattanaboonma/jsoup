@@ -24,7 +24,7 @@ To test function Response charset when receiving input type string. It will retu
 ### **Identify testable functions:**
 
 `HttpConnection.java` - **line 977**
-![Testcase1](image-6.png)
+<br>![Testcase1](image-6.png)
 
 ### **Identify parameters, return types, return values, and exceptional behavior:**
 
@@ -114,7 +114,7 @@ To test if `hasAttributeIgnoreCase(String key)` correctly identifies whether an 
 ### **Identify testable functions:**
 
 `Token.java` – **line 199**
-![Testcase2](image-2.png)
+<br>![Testcase2](image-2.png)
 
 ---
 
@@ -202,7 +202,7 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 ### **Identify testable functions:**
 
 `StringUtil.java` – **line 168**
-![Testcase3](image-3.png)
+<br>![Testcase3](image-3.png)
 
 ---
 
@@ -297,7 +297,7 @@ To test `equals` if two attributes have the same class, key, and value.
 
 **Identify testable function:**
 `Attribute.java` – **line 330**
-![Testcase6](image-4.png)
+<br>![Testcase6](image-4.png)
 ---
 
 ### **Identify parameter types, return types, return value, exceptional behaviors**
@@ -393,7 +393,7 @@ This test case checks whether String msg and Object array args are usable or not
 ### **Identify testable functions:**
 
 `ListLinks.java` – **line 50**
-![TestCase7](image-1.png)
+<br>![TestCase7](image-1.png)
 
 ---
 
@@ -497,7 +497,7 @@ To verify whether the parameters `String unencodedKey` and `String encodedValue`
 ### **Identify testable functions: **
 
 `Attribute.java` – **line 291**
-    ![TestCase10](image.png)
+<br>![TestCase10](image.png)
 
 ---
 
