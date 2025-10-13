@@ -29,18 +29,18 @@
 
 ### **Goal of the Test Case:**
 
-To verify that the `hasAttributeIgnoreCase(String key)` function correctly identifies whether an element’s attribute exists, **ignoring uppercase and lowercase differences** in the key.
+To test if `hasAttributeIgnoreCase(String key)` correctly identifies whether an element’s attribute exists or not, **ignoring uppercase and lowercase** letters.
 
 ---
 
-### **Identified Function:**
+### **Identify testable functions: **
 
 `Token.java` – **line 199**
 ![Testcase2](image-2.png)
 
 ---
 
-### **Identify parameters, return types, return values, and exceptional behavior: **
+### **Identify parameters, return types, return values, and exceptional behavior:**
 
 | Detail                   | Description                                                                                                   |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
@@ -58,7 +58,7 @@ To verify that the `hasAttributeIgnoreCase(String key)` function correctly ident
 | **C1 = Attribute presence** | Attribute = 0      | Attribute = 1    | Attribute > 1     |
 | **C2 = Key validity**       | Valid key          | Empty key        | Null key          |
 
-**Identify (possible) values (functionality):**
+**IIdentify (possible) values (interface):**
 
 | Characteristic              | Block 1            | Block 2          | Block 3                             |
 | --------------------------- | ------------------ | ---------------- | ----------------------------------- |
@@ -119,18 +119,18 @@ Assumption: **ECC (Each Choice Coverage)**
 
 ### **Goal of the Test Case:**
 
-To verify that the function `startsWithNewline(String string)` correctly determines whether a given string **starts with a newline character (`'\n'`)**.
+To check if `startsWithNewline(String string)` correctly identifies whether a string begins **newline character (`'\n'`)**.
 
 ---
 
-### **Identified Function:**
+### **Identify testable functions: **
 
 `StringUtil.java` – **line 168**
 ![Testcase3](image-3.png)
 
 ---
 
-### **Parameter and Return Details**
+### **Identify parameters, return types, return values, and exceptional behavior:**
 
 | Detail                   | Description                                                            |
 | ------------------------ | ---------------------------------------------------------------------- |
@@ -148,7 +148,7 @@ To verify that the function `startsWithNewline(String string)` correctly determi
 | **C1 = String existence** | `Null_String`          | `Not_null`             | –                     |
 | **C2 = String length**    | `string.length() == 0` | `string.length() == 1` | `string.length() > 1` |
 
-**Identify (possible) values (functionality):**
+**IIdentify (possible) values (interface):**
 
 | Characteristic            | Block 1 | Block 2        | Block 3   |
 | ------------------------- | ------- | -------------- | --------- |
@@ -226,22 +226,18 @@ Assumption: **BCC (Each Choice Coverage)**
 
 ### **Goal of the Test Case:**
 
-This test case checks whether the parameters `String msg` and `Object[] args` are usable.
-Specifically:
-
-* `msg` **should not be null**.
-* The relationship between **format specifiers** in `msg` and **objects** in `args` should be appropriate and correctly matched.
+his test case checks whether String msg and Object array args are usable or not?(`String msg` shouldn’t be null and the relationship between format specifiers and objects should be appropriate)
 
 ---
 
-### **Identified Function:**
+### **Identify testable functions:**
 
 `ListLinks.java` – **line 50**
 ![TestCase7](image-1.png)
 
 ---
 
-### **Identify parameters, return types, return values, and exceptional behavior: **
+### **Identify parameters, return types, return values, and exceptional behavior:**
 
 | Detail                    | Description                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -254,52 +250,52 @@ Specifically:
 
 ### **Interface-Based Characteristics**
 
+| Characteristic          | Block 1      | Block 2         | Block 3         |
+| ----------------------- | ------------ | --------------- | --------------- |
+| **C1= value of String msg** | null string  | empty string    | non-emty string |
+
+**IIdentify (possible) values (interface):**
+
 | Characteristic          | Block 1 | Block 2 | Block 3           |
 | ----------------------- | ------- | ------- | ----------------- |
-| **Value of String msg** | `null`  | `""`    | `"number %d, %d"` |
+| **C1= value of String msg** | `null`  | `""`    | `"number %d, %d"` |
 
 ---
 
 ### **Functionality-Based Characteristics**
 
-#### **FC1:** Relationship between the number of format specifiers and number of objects in `args`
+| **Characteristic**                                                                                                             | **Block 1**                                                            | **Block 2**                                                                      | **Block 3**                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **F1 = the relationship between the number of format specifiers in String msg and the number of objects in Object array args** | The number of format specifiers in `msg` < number of objects in `args` | The number of format specifiers in `msg` = number of objects in `args`           | The number of format specifiers in `msg` > number of objects in `args`     |
+| **F2 = The relationship between each format specifiers in String msg and each objects in Object array args**                     | Every format specifier in `msg` doesn’t match any object in `args`     | Some format specifiers in `msg` match some objects in `args`, while others don’t | Every format specifier in `msg` matches the corresponding object in `args` |
 
-| Block | Relationship Description              | Example  |
-| ----- | ------------------------------------- | -------- |
-| **1** | Format specifiers < number of objects | `(2, 3)` |
-| **2** | Format specifiers = number of objects | `(2, 2)` |
-| **3** | Format specifiers > number of objects | `(2, 1)` |
+### **Identify (Possible) Values (Functionality)**
 
-#### **FC2:** Relationship between each format specifier and object type
-
-| Block | Description                                         | Example                                     |
-| ----- | --------------------------------------------------- | ------------------------------------------- |
-| **1** | All format specifiers do **not match** object types | `("number %d, %d", new Object[]{one, two})` |
-| **2** | Some format specifiers match, others don’t          | `("number %d, %d", new Object[]{1, two})`   |
-| **3** | All format specifiers match correctly               | `("number %d, %d", new Object[]{1, 2})`     |
+| **Characteristic**                           | **Block 1**                                      | **Block 2**                                  | **Block 3**                              |
+| -------------------------------------------- | ------------------------------------------------ | -------------------------------------------- | ---------------------------------------- |
+|**F1 = the relationship between the number of format specifiers in String msg and the number of objects in Object array args**  | `(2, 3)`                                         | `(2, 2)`                                     | `(2, 1)`                                 |
+| **F2 = The relationship between each format specifiers in String msg and each objects in Object array args** | `("number %d, %d", new Object[] {"one", "two"})` | `("number %d, %d", new Object[] {1, "two"})` | `("number %d, %d", new Object[] {1, 2})` |
 
 ---
 
-### **Test Requirement Definition**
-
-**Assumption:** PWC (Pair-Wise Coverage)
+### **Combination of Partitions PWC (Pair-Wise Coverage)**
 **Total Test Requirements:** 9 (3 × 3 combinations)
 
-| Test ID | IC1              | FC1                         | FC2                        |
-| ------- | ---------------- | --------------------------- | -------------------------- |
-| **1**   | null string      | Format specifiers < objects | All specifiers don’t match |
-| **2**   | empty string     | Format specifiers = objects | Some match, others don’t   |
-| **3**   | non-empty string | Format specifiers > objects | All match                  |
-| **4**   | null string      | Format specifiers = objects | All match                  |
-| **5**   | null string      | Format specifiers > objects | Some match, others don’t   |
-| **6**   | empty string     | Format specifiers < objects | All match                  |
-| **7**   | empty string     | Format specifiers > objects | All specifiers don’t match |
-| **8**   | non-empty string | Format specifiers < objects | Some match, others don’t   |
-| **9**   | non-empty string | Format specifiers = objects | All specifiers don’t match |
+| **Test ID** | **C1**           | **F1**                                                                                     | **F2**                                                                                                 |
+| ----------- | ---------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **1**     | null string      | the number of format specifiers in String msg < the number of objects in Object array args | every format specifiers in String msg don’t match with every objects in Object array args              |
+| **2**     | empty string     | the number of format specifiers in String msg = the number of objects in Object array args | some format specifiers in String msg match with some objects in Object array args, while others don’t. |
+| **3**     | non-empty string | the number of format specifiers in String msg > the number of objects in Object array args | every format specifiers in String msg match with every objects in Object array args                    |
+| **4**     | null string      | the number of format specifiers in String msg = the number of objects in Object array args | every format specifiers in String msg match with every objects in Object array args                    |
+| **5**     | null string      | the number of format specifiers in String msg > the number of objects in Object array args | some format specifiers in String msg match with some objects in Object array args, while others don’t. |
+| **6**     | empty string     | the number of format specifiers in String msg < the number of objects in Object array args | every format specifiers in String msg match with every objects in Object array args                    |
+| **7**     | empty string     | the number of format specifiers in String msg > the number of objects in Object array args | every format specifiers in String msg don’t match with every objects in Object array args              |
+| **8**     | non-empty string | the number of format specifiers in String msg < the number of objects in Object array args | some format specifiers in String msg match with some objects in Object array args, while others don’t. |
+| **9**     | non-empty string | the number of format specifiers in String msg = the number of objects in Object array args | every format specifiers in String msg don’t match with every objects in Object array args              |
 
 ---
 
-### **Defined Test Values and Expected Results**
+### **Test Values and Expected Results**
 
 | Test ID | Test Values                                     | Expected Output                           |
 | ------- | ----------------------------------------------- | ----------------------------------------- |
@@ -337,7 +333,7 @@ To verify whether the parameters `String unencodedKey` and `String encodedValue`
 
 ---
 
-### **Identified Function:**
+### **Identify testable functions: **
 
 `Attribute.java` – **line 291**
     ![TestCase10](image.png)
@@ -379,9 +375,13 @@ To verify whether the parameters `String unencodedKey` and `String encodedValue`
 
 ### **Identify (possible) values (interface):**
 
+| **Characteristic**    | **Block 1**            | **Block 2**                                   | **Block 3**                                        | **Block 4**                                        |
+| --------------------- | ---------------------- | --------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| **F1 = Output value** | `NullPointerException` | `Attribute[key=title, value="", parent=null]` | `Attribute[key=title, value="Hello", parent=null]` | `Attribute[key=title, value="Hello", parent=null]` |
+
 ---
 
-**Coverage Criterion:** MBCC (Multiple Base Choice Coverage)
+### **Combination of Partitions MBCC (Multiple Base Choice Coverage)**
 
 **Base Choices:**
 
@@ -417,7 +417,7 @@ To verify whether the parameters `String unencodedKey` and `String encodedValue`
 
 ---
 
-### **Defined Test Values and Expected Results**
+### **Test Values and Expected Results**
 
 
 | Test ID | Test Values                                     | Expected Output                                                               |
