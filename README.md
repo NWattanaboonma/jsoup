@@ -83,8 +83,6 @@ To test if `hasAttributeIgnoreCase(String key)` correctly identifies whether an 
 
 ### **Combination of Partitions (ECC – Each Choice Coverage)**
 
-Assumption: **ECC (Each Choice Coverage)**
-
 **Test requirements(max)=** 3
 
 | **Test ID** | **C1 (Attribute presence)** | **C2 (Key validity)** | **F1 (Case-insensitive)**           |
@@ -171,12 +169,9 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ---
 
-### **Combination of Partitions (ECC – Each Choice Coverage)**
-
-### **Assumption: BCC (Each Choice Coverage)**
+### **Combination of Partitions (BCC – Each Choice Coverage)**
 
 **Total Test Requirements:** 5  (comes from 1 + ((2 - 1) * 1 + (3 - 1) * 1 + (2-1)*1))
-
 
 **Base Choices:**
 
@@ -227,7 +222,7 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ### **Goal of the Test Case:**
 
-his test case checks whether String msg and Object array args are usable or not?(`String msg` shouldn’t be null and the relationship between format specifiers and objects should be appropriate)
+This test case checks whether String msg and Object array args are usable or not?(`String msg` shouldn’t be null and the relationship between format specifiers and objects should be appropriate)
 
 ---
 
@@ -280,6 +275,7 @@ his test case checks whether String msg and Object array args are usable or not?
 ---
 
 ### **Combination of Partitions PWC (Pair-Wise Coverage)**
+
 **Total Test Requirements:** 9 (3 × 3 combinations)
 
 | **Test ID** | **C1**           | **F1**                                                                                     | **F2**                                                                                                 |
@@ -397,24 +393,24 @@ To verify whether the parameters `String unencodedKey` and `String encodedValue`
 
 | Test ID      | C1                                  | C2                                  | F1                                    |
 | ------------ | ----------------------------------- | ----------------------------------- | ------------------------------------- |
-| TR1 (Base 1) | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
-| TR2 (Base 2) | null                                | null                                | throw exception                       |
-| TR3          | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
-| TR4          | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
-| TR5          | empty string                        | non-empty string                    | Create attribute with unencoded value |
-| TR6          | non-empty string with HTML entities | non-empty string                    | Create attribute with unencoded value |
-| TR7          | HTML entities                       | non-empty string                    | Create attribute with unencoded value |
-| TR8          | non-empty string                    | empty string                        | Create attribute with empty value     |
-| TR9          | non-empty string                    | non-empty string with HTML entities | Create attribute with unencoded value |
-| TR10         | non-empty string                    | HTML entities                       | Create attribute with unencoded value |
-| TR11         | null                                | empty string                        | Create attribute with empty value     |
-| TR12         | null                                | non-empty string with HTML entities | Create attribute with unencoded value |
-| TR13         | null                                | HTML entities                       | Create attribute with unencoded value |
-| TR14         | empty string                        | null                                | throw exception                       |
-| TR15         | non-empty string with HTML entities | null                                | throw exception                       |
-| TR16         | HTML entities                       | null                                | throw exception                       |
-| TR17         | null                                | null                                | Create attribute with empty value     |
-| TR18         | null                                | null                                | Create attribute with unencoded value |
+| 1 (Base 1) | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
+| 2 (Base 2) | null                                | null                                | throw exception                       |
+| 3          | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
+| 4          | non-empty string                    | non-empty string                    | Create attribute with unencoded value |
+| 5          | empty string                        | non-empty string                    | Create attribute with unencoded value |
+| 6          | non-empty string with HTML entities | non-empty string                    | Create attribute with unencoded value |
+| 7          | HTML entities                       | non-empty string                    | Create attribute with unencoded value |
+| 8          | non-empty string                    | empty string                        | Create attribute with empty value     |
+| 9          | non-empty string                    | non-empty string with HTML entities | Create attribute with unencoded value |
+| 10         | non-empty string                    | HTML entities                       | Create attribute with unencoded value |
+| 11         | null                                | empty string                        | Create attribute with empty value     |
+| 12         | null                                | non-empty string with HTML entities | Create attribute with unencoded value |
+| 13         | null                                | HTML entities                       | Create attribute with unencoded value |
+| 14         | empty string                        | null                                | throw exception                       |
+| 15         | non-empty string with HTML entities | null                                | throw exception                       |
+| 16         | HTML entities                       | null                                | throw exception                       |
+| 17         | null                                | null                                | Create attribute with empty value     |
+| 18         | null                                | null                                | Create attribute with unencoded value |
 
 ---
 
