@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StringUtilMookTest {
+public class StringUtilTest {
     @Test
     public void tr1_baseCase_startsWthNewlineLengthGreaterThanOne() {
         String input = "\nHello";
