@@ -173,7 +173,8 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ### **Combination of Partitions (ECC – Each Choice Coverage)**
 
-Assumption: **BCC (Each Choice Coverage)**
+### **Assumption: BCC (Each Choice Coverage)**
+
 **Total Test Requirements:** 5  (comes from 1 + ((2 - 1) * 1 + (3 - 1) * 1 + (2-1)*1))
 
 
