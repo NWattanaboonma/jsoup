@@ -302,7 +302,7 @@ To verify that `public String getErrorMessage()` is functioning correctly and re
 ### **Identify Testable Function:**
 
 `ParseError.java` - **line 39**
-<br>![Testcase5](image-6.png)
+<br>![Testcase5](image-7.png)
 ---
 
 ### **Identify Parameters, Return Types, Return Values, and Exceptional Behavior:**
