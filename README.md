@@ -5,10 +5,6 @@
 
 **Jsoup** is a Java library that is a HTML parser, and is used to retrieve, read and manipulate real life HTML documents. It enables the developers to obtain data with CSS-like selectors and purify untrusted HTML data safely. In this JaCoCo coverage report, the project under test is Jsoup and this report indicates the percentage of its code which has been covered by the automated tests. The various packages like org.jsoup.parser, org.jsoup.nodes, org.jsoup.select, and others are the key functional components of the library and they are used to perform a specific task like parsing HTML, representing document nodes and selecting elements. The Coverage (%) columns show the percentage of the code in each package that was actually run in the course of testing. The sections of the code which were not tested are outlined in The Missed Instructions, Branches and Methods sections and allow developers to know which areas of Jsoup remain untested and require further test cases to be considered as fully reliable.
 
-# Jacoco Coverage Report
-
-**Jacoco** is a free Java code coverage tool that instruments bytecode to show how much of your code is exercised by tests (line, branch, instruction, class, method). It integrates with `Maven/Gradle/Ant, IDEs (IntelliJ/Eclipse), and CI (Jenkins/GitHub Actions), generating HTML/XML/CSV reports`; quick run: Maven mvn test jacoco:report, Gradle gradle test jacocoTestReport. Use it to find untested code and enforce minimum coverage in your build.
-
 ---
 
 # Test Case #1
