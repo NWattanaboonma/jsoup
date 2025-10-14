@@ -756,9 +756,9 @@ second highest blocks from every characteristics (4))
 
 | Test ID | Test values | Expected output |
 |----------|--------------|----------------|
-| TR2 | ("", new Object [ ] { }) | "" in console |
+| TR2 | ("", new Object [ ] { }) | "" |
 | TR3 | ("number %s, %s", new Object [ ] {one}) | Throws `MissingFormatArgumentException`  |
-| TR6 | ("", new Object [ ] {one, two}) | "" in console |
+| TR6 | ("", new Object [ ] {one, two}) | "" |
 | TR8 | ("number %s, %d", new Object [ ] {one, two, three}) | Throws `illegalformatconversionexception`  |
 | TR9 | ("number %d, %d", new Object [ ] {one, two}) | Throws `illegalformatconversionexception` |                    |
 
