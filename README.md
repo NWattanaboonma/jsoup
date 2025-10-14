@@ -439,7 +439,7 @@ To test `equals` if two attributes have the same class, key, and value.
 
    1. `(null object, false)`
 
-**Test requirements:** (comes from 1 + ((6 - 1) * 1 + (2 - 1) * 1))
+**Test requirements:** 7 (comes from 1 + ((6 - 1) * 1 + (2 - 1) * 1))
 
 | **Test Requirement ID** | **IC1**                                       | **FC1** |
 | ----------------------- | --------------------------------------------- | ------- |
