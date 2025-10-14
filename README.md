@@ -283,7 +283,101 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ---
 
-# Test Case #5
+## **# Test Case #5**
+
+### **Name of the Test Case:**
+
+```
+ParseErrorGetErrorMessageTest
+```
+
+---
+
+### **Goal of the Test Case:**
+
+To verify that `public String getErrorMessage()` is functioning correctly and returns the stored `errorMsg` variable based on the constructor input.
+
+---
+
+### **Identify Testable Function:**
+
+`ParseError.java` - **line 39**
+<br>![Testcase5](image-7.png)
+---
+
+### **Identify Parameters, Return Types, Return Values, and Exceptional Behavior:**
+
+| Detail                   | Description                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| **Parameters**           | None                                                                                                        |
+| **Return type**          | `String`                                                                                                    |
+| **Return value**         | Returns `errorMsg` (e.g., `"Unexpected token"`) from the constructor ![Testcase5Con](image-8.png) |
+| **Exceptional behavior** | None                                                                                                        |
+
+---
+
+### **Interface-Based Characteristics**
+
+| **Characteristic**      | **Block 1**      | **Block 2**  | **Block 3** |
+| ----------------------- | ---------------- | ------------ | ----------- |
+| **C1 = errorMsg value** | Non-empty string | Empty string | Null        |
+
+---
+
+### **Identify (Possible) Values (Interface)**
+
+| **Characteristic**      | **Block 1**          | **Block 2** | **Block 3** |
+| ----------------------- | -------------------- | ----------- | ----------- |
+| **C1 = errorMsg value** | `"Unexpected token"` | `""`        | `null`      |
+
+---
+
+### **Functionality-Based Characteristics**
+
+| **Characteristic**               | **Block 1** | **Block 2** |
+| -------------------------------- | ----------- | ----------- |
+| **F1 = Contains newline (`\n`)** | True        | False       |
+
+---
+
+### **Identify (Possible) Values (Functionality)**
+
+| **Characteristic**               | **Block 1 (Example)**              | **Block 2 (Example)** |
+| -------------------------------- | ---------------------------------- | --------------------- |
+| **F1 = Contains newline (`\n`)** | `"Unexpected token.\nInvalid tag"` | `"Unexpected token"`  |
+
+---
+
+### **Combine Partitions to Define Test Requirements (ACoC)**
+
+| **Test ID** | **C1 (errorMsg value)** | **F1 (Contains newline)** |
+| ----------- | ----------------------- | ------------------------- |
+| TR1         | Populated string        | True                      |
+| TR2         | Populated string        | False                     |
+| TR3         | Empty string            | True                      |
+| TR4         | Empty string            | False                     |
+| TR5         | Null                    | True                      |
+| TR6         | Null                    | False                     |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test ID** | **Blocks (C1,F1)** | **Input (Setup)**                                     | **Expected Output**                |
+| ----------- | ------------------ | ----------------------------------------------------- | ---------------------------------- |
+| TR1         | (Populated, True)  | `new ParseError(1, "Unexpected token.\nInvalid tag")` | `"Unexpected token.\nInvalid tag"` |
+| TR2         | (Populated, False) | `new ParseError(1, "Unexpected token")`               | `"Unexpected token"`               |
+| TR4         | (Empty, False)     | `new ParseError(1, "")`                               | `""`                               |
+| TR6         | (Null, False)      | `new ParseError(1, null)`                             | `null`                             |
+
+---
+
+### **CodeTest Results (Path)**
+
+```
+path: jsoup/src/test/java/org/jsoup/jsoupForChaiyongTest/ParseErrorGetErrorMessageTest.java
+```
+
 
 ---
 
