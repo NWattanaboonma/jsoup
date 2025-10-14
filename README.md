@@ -28,8 +28,8 @@ To test function Response charset when receiving input type string. It will retu
 | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | **Parameter type**       | `String Charset`                                                                                                  |
 | **Return type**          | `Response`                                                                                                     |
-| **Return value**         |                                |
-| **Exceptional behavior** |  |
+| **Return value**         |  `Response Type`                              |
+| **Exceptional behavior** |  -|
 
 ---
 
@@ -253,11 +253,11 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 | **Test ID**           | **C1 (String existence)** | **C2 (String length)** | **F1 (Starts with '\n')** |
 | --------------------- | ------------------------- | ---------------------- | ------------------------- |
-| **TR1 (Base Choice)** | Not_null                  | `string.length() > 1`  | True                      |
-| **TR2**               | Not_null                  | `string.length() > 1`  | False                     |
-| **TR3**               | Null_String               | `string.length() > 1`  | True                      |
-| **TR4**               | Not_null                  | `string.length() == 0` | True                      |
-| **TR5**               | Not_null                  | `string.length() == 1` | True                      |
+| **1 (Base Choice)** | Not_null                  | `string.length() > 1`  | True                      |
+| **2**               | Not_null                  | `string.length() > 1`  | False                     |
+| **3**               | Null_String               | `string.length() > 1`  | True                      |
+| **4**               | Not_null                  | `string.length() == 0` | True                      |
+| **5**               | Not_null                  | `string.length() == 1` | True                      |
 
 ---
 
@@ -265,9 +265,9 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 | **Test ID** | **Blocks (C1, C2, F1)**                  | **Input**   | **Expected Output** |
 | ----------- | ---------------------------------------- | ----------- | ------------------- |
-| **TR1**     | (Not_null, `string.length() > 1`, True)  | `"\nHello"` | `true`              |
-| **TR2**     | (Not_null, `string.length() > 1`, False) | `"Hello"`   | `false`             |
-| **TR5**     | (Not_null, `string.length() == 1`, True) | `"\n"`      | `true`              |
+| **1**     | (Not_null, `string.length() > 1`, True)  | `"\nHello"` | `true`              |
+| **2**     | (Not_null, `string.length() > 1`, False) | `"Hello"`   | `false`             |
+| **5**     | (Not_null, `string.length() == 1`, True) | `"\n"`      | `true`              |
 
 ---
 ### CodeTest Results (Path)
@@ -276,6 +276,103 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 ---
 
 # Test Case #4
+
+### **Name of the Test Case:**
+    
+    Testmatches
+
+### **The goal of the test case:**
+
+To check if `matches(Element root, LeafNode leaf)` correctly identifies leaf is a part of root
+
+---
+
+### **Identify testable functions:**
+
+`CombiningEvaluator.java` – **line 145**
+<br>![Testcase4](image-11.png)
+
+---
+
+### **Identify parameters, return types, return values, and exceptional behavior:**
+
+| Detail                   | Description                                                            |
+| ------------------------ | ---------------------------------------------------------------------- |
+| **Parameter type**       | ` root (Element), leaf (LeafNode)`                                                        |
+| **Return type**          | `boolean`                                                              |
+| **Return value**         | `true` if at least one evaluator matches and false if no matches       |
+| **Exceptional behavior** | None                                                                   |
+
+---
+
+### **Interface-based characteristic**
+
+| **Characteristic**         | **Block 1**    | **Block 2** | **Block 3** |
+| -------------------------- | -------------- | ----------- | ----------- |
+| C1 = Evaluator set size    | size==0        | size==1     | size>1      |
+| C2 = Evaluator composition | Non_Structural | Structural  | Mixed       |
+| C3 = Node type             | Element        | No_Element  | -           |
+
+---
+
+### **Identify (possible) values (interface)**
+
+| **Characteristic**         | **Block 1**   | **Block 2**          | **Block 3**          |
+| -------------------------- | ------------- | -------------------- | -------------------- |
+| C1 = Evaluator set size    | ""            | "div"                | "span, div, p"       |
+| C2 = Evaluator composition | `<div></div>` | `<div><p></p></div>` | `<div><p></p></div>` |
+| C3 = Node type             | Element       | No_Element           | -                    |
+
+---
+
+### **Functionality-based characteristic**
+
+| **Characteristic**               | **Block 1** | **Block 2** |
+| -------------------------------- | ----------- | ----------- |
+| F1 = Logical Evaluation Behavior | Any_Match   | No_Match    |
+
+---
+
+### **Identify (possible) values (functionality)**
+
+| **Characteristic** | **Block 1**                                                                                                                                                                                                                            | **Block 2**                                                                                                                                                                                                             |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| F1 = Match outcome | `Document doc = Jsoup.parse("<div class='header'></div>"); Element root = doc; Element leaf = doc.selectFirst("div"); CombiningEvaluator.Or eval = new CombiningEvaluator.Or( new Evaluator.Tag("p"), new Evaluator.Class("header"));` | `Document doc = Jsoup.parse("<div></div>"); Element root = doc; Element leaf = doc.selectFirst("div"); CombiningEvaluator.Or eval = new CombiningEvaluator.Or( new Evaluator.Tag("p"), new Evaluator.Class("header"));` |
+
+---
+
+### **Combination of Partitions MBCC (Multiple based choice coverage)**
+
+**Test Requirements:** 6 (comes from 2 + ((3 - 2) * 2 + (3 - 2) *2 + (2 - 2) * 2+ (2 - 2) * 2))
+
+**Base Choices:** 
+   1. (size==1, Non_Structural, No_Element, No_Match) 
+   2. (size>1, Mixed, Element, Any_Match)
+
+| **Test ID** | **C1**  | **C2**         | **C3**     | **F1**    |
+| ----------- | ------- | -------------- | ---------- | --------- |
+| TR1         | size==1 | Non_Structural | No_Element | No_Match  |
+| TR2         | size==1 | Structural     | No_Element | No_Match  |
+| TR3         | size==0 | Structural     | No_Element | No_Match  |
+| TR4         | size>1  | Mixed          | Element    | Any_Match |
+| TR5         | size>1  | Structural     | Element    | Any_Match |
+| TR6         | size==0 | Mixed          | Element    | Any_Match |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test ID** | **Input Setup**                                                                                                                                                                                                | **Explanation**                                                 | **Expected Output** |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------- |
+| 1         | `Document doc = Jsoup.parse("<div>text</div>"); Node leaf = doc.selectFirst("div").childNode(0); CombiningEvaluator eval = new CombiningEvaluator.Or(new Evaluator.Tag("p"));`                                 | One evaluator, text node cannot match any tag.                  | false               |
+| 2         | `Document doc = Jsoup.parse("<p>content</p>"); Node leaf = doc.selectFirst("p").childNode(0); CombiningEvaluator eval = new CombiningEvaluator.Or(new Evaluator.Tag("p"));`                                    | Text node inside `<p>`; evaluator looks for element `<p>` only. | false               |
+| 3         | `Document doc = Jsoup.parse("<p></p>"); Element leaf = doc.selectFirst("p"); CombiningEvaluator eval = new CombiningEvaluator.Or(); // no evaluators`                                                          | No evaluator; always returns false.                             | false               |
+| 4         | `Document doc = Jsoup.parse("<div class='header'></div>"); Element leaf = doc.selectFirst("div"); CombiningEvaluator eval = new CombiningEvaluator.Or(new Evaluator.Tag("p"), new Evaluator.Class("header"));` | Mixed evaluators; one (Class("header")) matches element.        | true                |
+| 5         | `Document doc = Jsoup.parse("<div></div>"); Element leaf = doc.selectFirst("div"); CombiningEvaluator eval = new CombiningEvaluator.Or(new Evaluator.Tag("div"), new Evaluator.Tag("span"));`                  | Structural evaluators; first one matches `<div>`.               | true                |
+---
+
+### **CodeTest Results (Path)**
+    path: jsoup/src/test/java/org/jsoup/select/TestMatches.java
 
 ---
 
