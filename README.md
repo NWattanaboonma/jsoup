@@ -283,7 +283,7 @@ To check if `startsWithNewline(String string)` correctly identifies whether a st
 
 ---
 
-## **# Test Case #5**
+# Test Case #5
 
 ### **Name of the Test Case:**
 
@@ -311,7 +311,7 @@ To verify that `public String getErrorMessage()` is functioning correctly and re
 | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | **Parameters**           | None                                                                                                        |
 | **Return type**          | `String`                                                                                                    |
-| **Return value**         | Returns `errorMsg` (e.g., `"Unexpected token"`) from the constructor ![Testcase5Con](image-8.png) |
+| **Return value**         | Returns `errorMsg` (e.g., `"Unexpected token"`) from the constructor <br>![Testcase5Con](image-8.png) |
 | **Exceptional behavior** | None                                                                                                        |
 
 ---

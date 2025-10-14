@@ -1,6 +1,6 @@
 package org.jsoup.helper;
 
-/* Copyright (C) 2025 Pond name - All Rights Reserved
+/* Copyright (C) 2025 Phonlapat Urairong - All Rights Reserved
  * You may use, distribute and modify this code under the terms of the MIT license.
  */
 

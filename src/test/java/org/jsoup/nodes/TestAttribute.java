@@ -1,6 +1,10 @@
 package org.jsoup.nodes;
-import org.junit.jupiter.api.Test;
 
+/* Copyright (C) 2025 Phonlapat Urairong - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the MIT license.
+ */
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestAttribute {

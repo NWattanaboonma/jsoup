@@ -9,7 +9,6 @@ import org.jsoup.nodes.Attribute;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-//Eak Code
 public class AttributeCreateFromEncodedTest {
     @Test
     void tr01() {
