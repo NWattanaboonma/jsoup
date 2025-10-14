@@ -570,7 +570,97 @@ This test case checks whether String msg and Object array args are usable or not
 
 ---
 
-# Test Case #9
+## **# Test Case #9**
+
+### **Name of the Test Case:**
+
+```
+WikipediaLogTest
+```
+
+---
+
+### **Goal of the Test Case:**
+
+To test if `public void format(String msg, String[] vals)` correctly handles message and array formatting and ensure the valid format specifiers and appropriate argument matching.
+
+---
+
+### **Identify Testable Function:**
+
+`Wikipedia.java` - **line 27**
+<br>![Testcase9](image-10.png)
+
+---
+
+### **Identify Parameters, Return Types, Return Values, and Exceptional Behavior:**
+
+| Detail                   | Description                                            |
+| ------------------------ | ------------------------------------------------------ |
+| **Parameter types**      | `String msg`, `String[] vals`                          |
+| **Return type**          | `void`                                                 |
+| **Return value**         | Formatted message (printed to console)                 |
+| **Exceptional behavior** | None explicitly thrown; possible formatting exceptions |
+
+---
+
+### **Interface-Based Characteristics**
+
+| **Characteristic**     | **Block 1** | **Block 2**  | **Block 3**      |
+| ---------------------- | ----------- | ------------ | ---------------- |
+| **C1 = Value of msg**  | null string | empty string | non-empty string |
+| **C2 = Value of vals** | null        | empty array  | non-empty array  |
+
+---
+
+### **Identify (Possible) Values (Interface)**
+
+| **Characteristic** | **Block 1** | **Block 2** | **Block 3**                        |
+| ------------------ | ----------- | ----------- | ---------------------------------- |
+| **C1 (msg)**       | `null`      | `\"\"`      | `\"number %s, %s\"`                |
+| **C2 (vals)**      | `null`      | `[]`        | `[\"test data1\", \"test data2\"]` |
+
+---
+
+### **Functionality-Based Characteristics**
+
+| **Characteristic**                                         | **Block 1** | **Block 2**   | **Block 3** | **Block 4**                |
+| ---------------------------------------------------------- | ----------- | ------------- | ----------- | -------------------------- |
+| **F1 = Relationship between specifiers and array length**  | `<`         | `=`           | `>`         | `= 0`                      |
+| **F2 = Relationship between specifiers and type matching** | None match  | Partial match | Full match  | Throws ValidationException |
+
+---
+
+### **Combine Partitions to Define Test Requirements (PWC)**
+
+| **Test ID** | **C1 (msg)**     | **F1 (Count Relationship)** | **F2 (Type Relationship)** |
+| ----------- | ---------------- | --------------------------- | -------------------------- |
+| TR1         | null string      | `<`                         | None match                 |
+| TR2         | empty string     | `=`                         | Partial match              |
+| TR3         | non-empty string | `>`                         | Full match                 |
+| TR8         | non-empty string | `<`                         | Partial match              |
+| TR9         | non-empty string | `=`                         | None match                 |
+| TR10        | null string      | `=0`                        | Throws ValidationException |
+
+---
+
+### **Test Values and Expected Results**
+
+| **Test ID** | **Test Values**                                                  | **Expected Output**                       |
+| ----------- | ---------------------------------------------------------------- | ----------------------------------------- |
+| TR2         | `(\"\", new String[]{})`                                         | `\"\"` (printed to console)               |
+| TR3         | `(\"number %s, %s\", new String[]{\"one\"})`                     | Throws `MissingFormatArgumentException`   |
+| TR6         | `(\"\", new String[]{\"one\", \"two\"})`                         | `\"\"` (printed to console)               |
+| TR8         | `(\"number %s, %d\", new String[]{\"one\", \"two\", \"three\"})` | Throws `IllegalFormatConversionException` |
+| TR9         | `(\"number %d, %d\", new String[]{\"one\", \"two\"})`            | Throws `IllegalFormatConversionException` |
+
+---
+
+### **CodeTest Results (Path)**
+
+```
+path: jsoup/src/test/java/org/jsoup/jsoupForChaiyongTest/WikipediaTest.java
+```
 
 ---
 
