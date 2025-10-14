@@ -586,73 +586,76 @@ To test if `public void format(String msg, String[] vals)` correctly handles mes
 
 ---
 
-### **Identify Testable Function:**
+### **Interface-based characteristics:**
 
-`Wikipedia.java` - **line 27**
-<br>![Testcase9](image-10.png)
-
----
-
-### **Identify Parameters, Return Types, Return Values, and Exceptional Behavior:**
-
-| Detail                   | Description                                            |
-| ------------------------ | ------------------------------------------------------ |
-| **Parameter types**      | `String msg`, `String[] vals`                          |
-| **Return type**          | `void`                                                 |
-| **Return value**         | Formatted message (printed to console)                 |
-| **Exceptional behavior** | None explicitly thrown; possible formatting exceptions |
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| C1= The value of String msg | null string | empty string | non-empty string |
+| C2= The value of String val | null | empty array | non-empty array |
 
 ---
 
-### **Interface-Based Characteristics**
+### **Identify (possible) values (interfaced):**
 
-| **Characteristic**     | **Block 1** | **Block 2**  | **Block 3**      |
-| ---------------------- | ----------- | ------------ | ---------------- |
-| **C1 = Value of msg**  | null string | empty string | non-empty string |
-| **C2 = Value of vals** | null        | empty array  | non-empty array  |
-
----
-
-### **Identify (Possible) Values (Interface)**
-
-| **Characteristic** | **Block 1** | **Block 2** | **Block 3**                        |
-| ------------------ | ----------- | ----------- | ---------------------------------- |
-| **C1 (msg)**       | `null`      | `\"\"`      | `\"number %s, %s\"`                |
-| **C2 (vals)**      | `null`      | `[]`        | `[\"test data1\", \"test data2\"]` |
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| C1= The value of String msg | null | "" | "number %s, %s" |
+| C2= The value of String val | null | [] | ["test data1", "test data2"] |
 
 ---
 
-### **Functionality-Based Characteristics**
+### **Functionality-based characteristics:**
 
-| **Characteristic**                                         | **Block 1** | **Block 2**   | **Block 3** | **Block 4**                |
-| ---------------------------------------------------------- | ----------- | ------------- | ----------- | -------------------------- |
-| **F1 = Relationship between specifiers and array length**  | `<`         | `=`           | `>`         | `= 0`                      |
-| **F2 = Relationship between specifiers and type matching** | None match  | Partial match | Full match  | Throws ValidationException |
-
----
-
-### **Combine Partitions to Define Test Requirements (PWC)**
-
-| **Test ID** | **C1 (msg)**     | **F1 (Count Relationship)** | **F2 (Type Relationship)** |
-| ----------- | ---------------- | --------------------------- | -------------------------- |
-| TR1         | null string      | `<`                         | None match                 |
-| TR2         | empty string     | `=`                         | Partial match              |
-| TR3         | non-empty string | `>`                         | Full match                 |
-| TR8         | non-empty string | `<`                         | Partial match              |
-| TR9         | non-empty string | `=`                         | None match                 |
-| TR10        | null string      | `=0`                        | Throws ValidationException |
+| Characteristic | Block 1 | Block 2 | Block 3 | Block 4 |
+|----------------|----------|----------|----------|----------|
+| F1=  the relationship between the number of format specifiers in String msg and the number of strings in String array vals | the number of format specifiers in String msg < the number of strings in String array vals | the number of format specifiers in String msg = the number of strings in String array vals | the number of format specifiers in String msg > the number of strings in String array vals | the number of format specifiers in String msg or  the number of strings in String array vals are equals 0 |
+| F2= The relationship between each format specifiers in String msg and each strings in String array vals | every format specifiers in String msg don’t match with every strings in String array vals | some format specifiers in String msg match with some strings in String array args, while others don’t. | every format specifiers in String msg match with every strings in String array args | Throws ValidationException |
 
 ---
 
-### **Test Values and Expected Results**
+### **Identify (possible) values (functionality):**
 
-| **Test ID** | **Test Values**                                                  | **Expected Output**                       |
-| ----------- | ---------------------------------------------------------------- | ----------------------------------------- |
-| TR2         | `(\"\", new String[]{})`                                         | `\"\"` (printed to console)               |
-| TR3         | `(\"number %s, %s\", new String[]{\"one\"})`                     | Throws `MissingFormatArgumentException`   |
-| TR6         | `(\"\", new String[]{\"one\", \"two\"})`                         | `\"\"` (printed to console)               |
-| TR8         | `(\"number %s, %d\", new String[]{\"one\", \"two\", \"three\"})` | Throws `IllegalFormatConversionException` |
-| TR9         | `(\"number %d, %d\", new String[]{\"one\", \"two\"})`            | Throws `IllegalFormatConversionException` |
+| Characteristic | Block 1 | Block 2 | Block 3 | Block 4 |
+|----------------|----------|----------|----------|----------|
+| F1=  the relationship between the number of format specifiers in String msg and the number of strings in String array vals | (2, 3) | (2, 2) | (2, 1) | (0,0) |
+| F2= The relationship between each format specifiers in String msg and each strings in String array vals | ("number %d, %d", new String [ ] {one, two}) | ("number %s, %d", new String [ ] {one, two}) | ("number %s, %s", new String [ ] {one, two}) | (null,null) |
+
+---
+
+### **Combine partitions to define test requirements:**
+
+Assumption: PWC (Pair wise coverage)  
+Test requirements: 12  (comes from the number of highest blocks from every characteristics (3) * the number of  
+second highest blocks from every characteristics (4))  
+
+| Test ID | C1 | F1 | F2 |
+|----------|----|----|----|
+| TR1 | null string | the number of format specifiers in String msg < the number of strings in String array vals | every format specifiers in String msg don’t match with every strings in String array vals |
+| TR2 | empty string | the number of format specifiers in String msg = the number of strings in String array vals | some format specifiers in String msg match with some strings in String array vals, while others don’t. |
+| TR3 | non-empty string | the number of format specifiers in String msg > the number of strings in String array vals | every format specifiers in String msg match with every strings in String array vals |
+| TR4 | null string | the number of format specifiers in String msg = the number of strings in String array vals | every format specifiers in String msg match with every strings in String array vals |
+| TR5 | null string | the number of format specifiers in String msg > the number of strings in String array vals | some format specifiers in String msg match with some strings in String array vals, while others don’t. |
+| TR6 | empty string | the number of format specifiers in String msg < the number of strings in String array vals | every format specifiers in String msg match with every strings in String array vals |
+| TR7 | empty string | the number of format specifiers in String msg > the number of strings in String array vals | every format specifiers in String msg don’t match with every strings in String array vals |
+| TR8 | non-empty string | the number of format specifiers in String msg < the number of strings in String array vals | some format specifiers in String msg match with some strings in String array vals, while others don’t. |
+| TR9 | non-empty string | the number of format specifiers in String msg = the number of strings in String array vals | every format specifiers in String msg don’t match with every strings in String array vals |
+| TR10 | null string | the number of format specifiers in String msg or the number of strings in String array vals are equals 0 | Throws ValidationException |
+| TR11 | empty string | the number of format specifiers in String msg or the number of strings in String array vals are equals 0 | Throws ValidationException |
+| TR12 | non-empty string | the number of format specifiers in String msg or the number of strings in String array vals are equals 0 | Throws ValidationException |
+
+---
+
+### **Define test values and expected values:**
+
+(Eliminate infeasible test requirements)  
+
+| Test ID | Test values | Expected output |
+|----------|--------------|----------------|
+| TR2 | ("", new Object [ ] { }) | "" in console |
+| TR3 | ("number %s, %s", new Object [ ] {one}) | missingformatargumentexception |
+| TR6 | ("", new Object [ ] {one, two}) | "" in console |
+| TR8 | ("number %s, %d", new Object [ ] {one, two, three}) | illegalformatconversionexception |
+| TR9 | ("number %d, %d", new Object [ ] {one, two}) | illegalformatconversionexception |                    |
 
 ---
 
