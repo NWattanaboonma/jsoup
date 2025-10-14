@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParseErrorTest {
     @Test
     void testGetErrorMessageNewLine() {
-        ParseError err = new ParseError(1, "Unexpected token. /nInvalid tag");
-        assertEquals("Unexpected token. /nInvalid tag", err.getErrorMessage());
+        ParseError err = new ParseError(1, "Unexpected token. \nInvalid tag");
+        assertEquals("Unexpected token. \nInvalid tag", err.getErrorMessage());
     }
 
     @Test
