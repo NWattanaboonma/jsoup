@@ -375,7 +375,7 @@ To verify that `public String getErrorMessage()` is functioning correctly and re
 ### **CodeTest Results (Path)**
 
 ```
-path: jsoup/src/test/java/org/jsoup/jsoupForChaiyongTest/ParseErrorGetErrorMessageTest.java
+path: jsoup/src/test/java/org/jsoup/jsoupForChaiyongTest/ParseErrorTest.java
 ```
 
 
@@ -570,7 +570,7 @@ This test case checks whether String msg and Object array args are usable or not
 ### **Name of the Test Case:**
 
 ```
-LinkListTrimTest
+ListLinjTrimTest
 ```
 ---
 ### **Goal of the Test Case:**
@@ -578,7 +578,7 @@ LinkListTrimTest
 This test case checks whether String s and Int width are usable (String s shouldn’t be null and Int width shouldn’t be < 0)  
 ---
 **Identify testable function:**
-`.java` – **line **
+`ListLink.java` – **line 54**
 <br>![Testcase8](image-9.png)
 ---
 
@@ -655,7 +655,7 @@ Test requirements: 3 (comes from the number of highest blocks from every charact
 ### **CodeTest Results (Path)**
 
 ```
-path: 
+path: jsoup/src/test/java/org/jsoup/examples/ListLinkTest.java
 ```
 ---
 
