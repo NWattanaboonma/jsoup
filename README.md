@@ -567,7 +567,96 @@ This test case checks whether String msg and Object array args are usable or not
 ---
 
 # Test Case #8
+### **Name of the Test Case:**
 
+```
+LinkListTrimTest
+```
+---
+### **Goal of the Test Case:**
+
+This test case checks whether String s and Int width are usable (String s shouldn’t be null and Int width shouldn’t be < 0)  
+---
+**Identify testable function:**
+`.java` – **line **
+<br>![Testcase8](image-9.png)
+---
+
+### **Identify parameter types, return types, return value, exceptional behaviors**
+
+| **Description**           | **Details**                                                               |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Parameter types**       | String, Int                                                                    |
+| **Return type**           | String                                                                     |
+| **Return value**          | Trimmed string |
+| **Exceptional behaviors** | None                                                                      |
+
+
+
+---
+
+### **Interface-based characteristics:**
+
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| C1= Value of String s | null string | empty string | non-empty string |
+| C2=  value of Int width | the value of Int width < 0 | the value of Int width = 0 | the value of Int width > 0 |
+
+---
+
+### **Identify (possible) values (interfaced):**
+
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| C1= Value of String s | null | "" | "class" |
+| C2=  value of Int width | -2 | 0 | 2 |
+
+---
+
+### **Functionality-based characteristics:**
+
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| F1= The relationship between the size of String s and the value of Int width | the size of String s < the value of Int width | the size of String s = the value of Int width | the size of String s > the value of Int width |
+
+---
+
+### **Identify (possible) values (functionality):**
+
+| Characteristic | Block 1 | Block 2 | Block 3 |
+|----------------|----------|----------|----------|
+| F1= The relationship between the size of String s and the value of Int width | (0, 2) | (0, 0) | (5, 2) |
+
+---
+
+### **Combine partitions to define test requirements:**
+
+Assumption: ECC (Each choice coverage)  
+Test requirements: 3 (comes from the number of highest blocks from every characteristics (3))  
+
+| Test ID | C1 | C2 | F1 |
+|----------|----|----|----|
+| TR1 | null string | the value of Int width < 0 | the size of String s < the value of Int width |
+| TR2 | empty string | the value of Int width = 0 | the size of String s = the value of Int width |
+| TR3 | non-empty string | the value of Int width > 0 | the size of String s > the value of Int width |
+
+---
+
+### **Define test values and expected values:**
+
+(Eliminate infeasible test requirements)  
+
+| Test ID | Test values | Expected output |
+|----------|--------------|----------------|
+| TR2 | ("", 0) | "" |
+| TR3 | ("class", 2) | "c" |
+---
+
+### **CodeTest Results (Path)**
+
+```
+path: 
+```
 ---
 
 ## **# Test Case #9**
@@ -577,12 +666,28 @@ This test case checks whether String msg and Object array args are usable or not
 ```
 WikipediaLogTest
 ```
-
 ---
 
 ### **Goal of the Test Case:**
 
 To test if `public void format(String msg, String[] vals)` correctly handles message and array formatting and ensure the valid format specifiers and appropriate argument matching.
+---
+**Identify testable function:**
+`Wikipedia.java` – **line 27**
+<br>![Testcase9](image-10.png)
+---
+
+### **Identify parameter types, return types, return value, exceptional behaviors**
+
+| **Description**           | **Details**                                                               |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Parameter types**       | String, String array                                                                   |
+| **Return type**           | Void                                                                     |
+| **Return value**          | Formatted string (from console)  |
+| **Exceptional behaviors** | None                                                                      |
+
+
+
 
 ---
 
