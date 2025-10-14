@@ -379,6 +379,11 @@ To check if `matches(Element root, LeafNode leaf)` correctly identifies leaf is 
     path: jsoup/src/test/java/org/jsoup/select/TestMatches.java
 
 ---
+### Note (Optional):
+    To ensure the true branch of matches(Element, LeafNode) method is tested, the custom TextEqualsOkEvaluator is added. Inbuilt evaluators of Jsoup such as Tag or Class only match elements and not leaf nodes therefore these tests would never give any true-answer. This simple evaluator corresponds to a text node that has the text content "ok" so that the corresponding CombiningEvaluator.Or can be true when one of the simple evaluators is successful. In brief, it serves the purpose of making sure that the logic of the method used in the assumption of returning a true value is actually being implemented and tested.
+
+
+---
 
 # Test Case #5
 
