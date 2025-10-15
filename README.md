@@ -60,8 +60,8 @@ To test function Response charset when receiving input type string. It will retu
 | **Characteristic**       | **Block 1**                  | **Block 2**                 | **Block 3** |
 | ------------------------ | ---------------------------- | --------------------------- | ----------- |
 | F1 = Input Charset Value | Valid non-empty string       | empty string                | null        |
-| F2 = Assignment Behavior | Assign charset value to this | Assign empty String to this | Assign null |
-| F3 = Return Behavior     | Return this                  | Return this                 | Return null |
+| F2 = Assignment Behavior      | Assign charset value to this | Assign empty String to this | Assign null |
+| F3 = Return Behavior(constant)    | Return this (same instance)  | -                           | -           |
 
 ---
 
