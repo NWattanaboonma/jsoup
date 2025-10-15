@@ -672,7 +672,7 @@ This test case checks whether String msg and Object array args are usable or not
 ### **Name of the Test Case:**
 
 ```
-ListLinjTrimTest
+ListLinkTrimTest
 ```
 ---
 ### **Goal of the Test Case:**
