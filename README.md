@@ -41,7 +41,7 @@ To test function Response charset when receiving input type string. It will retu
 
 | **Characteristic**     | **Block 1**                       | **Block 2**                              | **Block 3**             |
 | ---------------------- | --------------------------------- | ---------------------------------------- | ----------------------- |
-| C1 = Parameter charset | input parameter is String example | input parameter isn’t String example 123 | input parameter is null |
+| C1 = Parameter charset | input parameter is String  | input parameter isn’t String  | input parameter is null |
 | C2 = return values     | standard valid charset name       | Error_key                                | Null_Key                |
 
 ---
