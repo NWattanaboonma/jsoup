@@ -51,7 +51,7 @@ To test function Response charset when receiving input type string. It will retu
 | **Characteristic**      | **Block 1** | **Block 2** | **Block 3** |
 | ----------------------- | ----------- | ----------- | ----------- |
 | C1 = Parameter charset  | “testdata”  | “”          | null        |
-| C2 = Attribute presence | “testdata”  | “”          | null        |
+| C2 = return values      | “testdata”  | “”          | null        |
 
 ---
 
